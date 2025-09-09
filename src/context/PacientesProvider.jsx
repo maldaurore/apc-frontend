@@ -40,6 +40,7 @@ export const PacientesProvider = ({ children }) => {
       }
     };
     if (paciente.id) {
+      console.log(paciente);
       try {
         const { data } = await clienteAxios.put(`/pacientes/${paciente.id}`, paciente, config);
 

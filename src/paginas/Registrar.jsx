@@ -33,7 +33,6 @@ const Registrar = () => {
 
     try {
       await clienteAxios.post('/medicos', { nombre, email, password });
-      console.log('Usuario creado correctamente');
       setAlerta({
         msg: 'Creado correctamente, revisa tu email',
         error: false

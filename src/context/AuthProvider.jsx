@@ -25,7 +25,6 @@ const AuthProvider = ({ children }) => {
 
       try {
         const { data } = await clienteAxios('/medicos/perfil', config);
-        console.log("Usuario autenticado:", data);
         setAuth(data.medico);
       } catch (error) {
         console.error("Error al autenticar el usuario:", error);
