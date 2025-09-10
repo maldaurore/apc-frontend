@@ -2,13 +2,8 @@ import usePacientes from "../hooks/usePacientes";
 
 const Paciente = ({ paciente }) => {
 
-  const { email, nombre, sintomas, fecha, _id } = paciente;
+  const { email, nombre, _id } = paciente;
   const { setEdicion, eliminarPaciente } = usePacientes();
-
-  const formatearFecha = (fecha) => {
-    const nuevaFecha = new Date(fecha);
-    return new Intl.DateTimeFormat('es-MX', {dateStyle: 'long'}).format(nuevaFecha);
-  };
 
   return (
     <div className="mx-5 my-10 bg-white shadow-md px-5 py-10 rounded-xl" >
@@ -17,12 +12,6 @@ const Paciente = ({ paciente }) => {
       </p>
       <p className="font-bold uppercase text-indigo-700 my-2">Email: {""}
         <span className="font-normal normal-case text-black">{email}</span>
-      </p>
-      <p className="font-bold uppercase text-indigo-700 my-2">Síntomas: {""}
-        <span className="font-normal normal-case text-black">{sintomas}</span>
-      </p>
-      <p className="font-bold uppercase text-indigo-700 my-2">Fecha: {""}
-        <span className="font-normal normal-case text-black">{formatearFecha(fecha)}</span>
       </p>
 
       <div className="flex justify-between my-5" >

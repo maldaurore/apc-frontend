@@ -5,8 +5,6 @@ import usePacientes from "../hooks/usePacientes";
 const Formulario = () => {
   const [ nombre, setNombre ] = useState('');
   const [ email, setEmail ] = useState('');
-  const [ fecha, setFecha ] = useState('');
-  const [ sintomas, setSintomas ] = useState('');
   const [ alerta, setAlerta ] = useState({});
   const [ id, setId ] = useState('');
 
@@ -16,8 +14,6 @@ const Formulario = () => {
     if (paciente?.nombre) {
       setNombre(paciente.nombre);
       setEmail(paciente.email);
-      setFecha(paciente.fecha);
-      setSintomas(paciente.sintomas);
       setId(paciente._id);
     }
   }, [paciente])
@@ -26,7 +22,7 @@ const Formulario = () => {
     e.preventDefault();
 
     // Validar formulario
-    if ([nombre, email, fecha, sintomas].includes('')) {
+    if ([nombre, email].includes('')) {
       setAlerta({
         msg: 'Todos los campos son obligatorios',
         error: true
@@ -40,15 +36,13 @@ const Formulario = () => {
       error: false
     });
 
-    guardarPaciente({ nombre, email, fecha, sintomas, id });
+    guardarPaciente({ nombre, email, id });
     setAlerta({
       msg: 'Paciente guardado correctamente',
       error: false
     });
     setNombre('');
     setEmail('');
-    setFecha('');
-    setSintomas('');
     setId('');
   }
 
@@ -99,36 +93,6 @@ const Formulario = () => {
             className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
             value={email}
             onChange={e => setEmail(e.target.value)}
-          />
-        </div>
-        <div className="mb-5" >
-          <label 
-            htmlFor="fecha"
-            className="text-gray-700 uppercase font-bold"
-          >
-            Fecha de alta
-          </label>
-          <input
-            id="fecha"
-            type="date"
-            className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
-            value={fecha}
-            onChange={e => setFecha(e.target.value)}
-          />
-        </div>
-        <div className="mb-5" >
-          <label 
-            htmlFor="sintomas"
-            className="text-gray-700 uppercase font-bold"
-          >
-            Síntomas del paciente
-          </label>
-          <textarea
-            id="sintomas"
-            placeholder="Describe los síntomas del paciente"
-            className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
-            value={sintomas}
-            onChange={e => setSintomas(e.target.value)}
           />
         </div>
 

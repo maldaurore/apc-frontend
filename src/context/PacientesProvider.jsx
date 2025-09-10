@@ -53,6 +53,7 @@ export const PacientesProvider = ({ children }) => {
     } else {
       try {
         const { data } = await clienteAxios.post('/pacientes', paciente, config);
+        // eslint-disable-next-line no-unused-vars
         const { createdAt, updatedAt, __v, ...pacienteAlmacenado } = data;
         setPacientes([pacienteAlmacenado, ...pacientes]);
       } catch (error) {
@@ -60,6 +61,15 @@ export const PacientesProvider = ({ children }) => {
       }
     }
   };
+
+  const verificarCorreo = async (email) => {
+    try {
+      const { data } = await clienteAxios.post('/pacientes/verificar-email', { email });
+      return data;
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  }
 
   const eliminarPaciente = async (id) => {
     const confirmar = confirm('¿Estás seguro de eliminar este paciente?');
@@ -92,7 +102,8 @@ export const PacientesProvider = ({ children }) => {
         guardarPaciente,
         setEdicion,
         paciente,
-        eliminarPaciente
+        eliminarPaciente,
+        verificarCorreo,
       }}
     >
       {children}

@@ -13,6 +13,7 @@ import CambiarPassword from "./paginas/CambiarPassword"
 import EditarPerfil from "./paginas/EditarPerfil"
 import CitasAdmin from "./paginas/CitasAdmin"
 import { CitasProvider } from "./context/CitasProvider"
+import AgendarCitaPublic from "./paginas/AgendarCitaPublic"
 
 function App() {
 
@@ -36,6 +37,9 @@ function App() {
                 <Route path="perfil" element={<EditarPerfil />} />
                 <Route path="cambiar-password" element={<CambiarPassword />} />
               </Route>
+              
+              <Route path="agendar-cita" element={<AgendarCitaPublic />} />
+              
             </Routes>
           </CitasProvider>
         </PacientesProvider>
