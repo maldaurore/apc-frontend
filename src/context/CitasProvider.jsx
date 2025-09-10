@@ -15,6 +15,9 @@ export const CitasProvider = ({ children }) => {
   const [citas, setCitas] = useState([]);
   const { auth } = useAuth();
 
+  // TODO: Sacar obtenerCitas del useEffect para poder reutilizarlo
+  // y enviarle parametros como profesionalId y rango de fecha.
+  // En el useEffect se le pasara el ID del profesional logueado  y el rango sera el mes actual.
   useEffect(() => {
     const obtenerCitas = async () => {
       try {
