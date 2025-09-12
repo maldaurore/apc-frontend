@@ -13,7 +13,7 @@ const ConfirmarCuenta = () => {
   useEffect(() => {
     const confirmarCuenta = async () => {
       try {
-        const url = `/medicos/confirmar/${id}`;
+        const url = `/profesionales/confirmar/${id}`;
         const { data } = await clienteAxios(url);
 
         setCuentaConfirmada(true);

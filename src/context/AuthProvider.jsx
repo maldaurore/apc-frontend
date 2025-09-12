@@ -24,8 +24,8 @@ const AuthProvider = ({ children }) => {
       }
 
       try {
-        const { data } = await clienteAxios('/medicos/perfil', config);
-        setAuth(data.medico);
+        const { data } = await clienteAxios('/profesionales/perfil', config);
+        setAuth(data.profesional);
       } catch (error) {
         console.error("Error al autenticar el usuario:", error);
         setAuth({});
@@ -56,9 +56,9 @@ const AuthProvider = ({ children }) => {
     }
 
     try {
-      const { data } = await clienteAxios.put(`/medicos/perfil/${auth._id}`, datos, config);
+      const { data } = await clienteAxios.put(`/profesionales/perfil/${auth._id}`, datos, config);
       console.log("Perfil actualizado:", data);
-      setAuth(data.medico);
+      setAuth(data.profesional);
 
       return { msg: "Perfil actualizado correctamente" };
     } catch (error) {
@@ -83,7 +83,7 @@ const AuthProvider = ({ children }) => {
     }
 
     try {
-      await clienteAxios.put(`/medicos/actualizar-password/${auth._id}`, datos, config);
+      await clienteAxios.put(`/profesionales/actualizar-password/${auth._id}`, datos, config);
       return { msg: "Contraseña actualizada correctamente", error: false };
     } catch (error) {
       return { msg: error.response.data.msg, error: true };

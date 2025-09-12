@@ -15,7 +15,7 @@ const OlvidePassword = () => {
     }
 
     try {
-      const { data } = await clienteAxios.post('/medicos/olvide-password', { email });
+      const { data } = await clienteAxios.post('/profesionales/olvide-password', { email });
       setAlerta({
         msg: data.msg,
         error: false

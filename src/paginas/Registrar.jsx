@@ -32,7 +32,7 @@ const Registrar = () => {
     setAlerta({});
 
     try {
-      await clienteAxios.post('/medicos', { nombre, email, password });
+      await clienteAxios.post('/profesionales', { nombre, email, password });
       setAlerta({
         msg: 'Creado correctamente, revisa tu email',
         error: false
