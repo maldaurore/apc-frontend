@@ -14,35 +14,38 @@ import EditarPerfil from "./paginas/EditarPerfil"
 import CitasAdmin from "./paginas/CitasAdmin"
 import { CitasProvider } from "./context/CitasProvider"
 import AgendarCitaPublic from "./paginas/AgendarCitaPublic"
+import { ProfesionalesProvider } from "./context/ProfesionalesProvider"
 
 function App() {
 
   return (
     <BrowserRouter>
       <AuthProvider>
-        <PacientesProvider>
-          <CitasProvider>
-            <Routes>
-              <Route path="/" element={<AuthLayout />} >
-                <Route index element={<Login />} />
-                <Route path="registrar" element={<Registrar />} />
-                <Route path="olvide-password" element={<OlvidePassword />} />
-                <Route path="olvide-password/:token" element={<NuevoPassword />} />
-                <Route path="confirmar/:id" element={<ConfirmarCuenta />} />
-              </Route>
+        <ProfesionalesProvider>
+          <PacientesProvider>
+            <CitasProvider>
+              <Routes>
+                <Route path="/" element={<AuthLayout />} >
+                  <Route index element={<Login />} />
+                  <Route path="registrar" element={<Registrar />} />
+                  <Route path="olvide-password" element={<OlvidePassword />} />
+                  <Route path="olvide-password/:token" element={<NuevoPassword />} />
+                  <Route path="confirmar/:id" element={<ConfirmarCuenta />} />
+                </Route>
 
-              <Route path="/admin" element={<RutaProtegida />} >
-                <Route index element={<AdministrarPacientes />} />
-                <Route path="citas" element={<CitasAdmin />} />
-                <Route path="perfil" element={<EditarPerfil />} />
-                <Route path="cambiar-password" element={<CambiarPassword />} />
-              </Route>
-              
-              <Route path="agendar-cita" element={<AgendarCitaPublic />} />
-              
-            </Routes>
-          </CitasProvider>
-        </PacientesProvider>
+                <Route path="/admin" element={<RutaProtegida />} >
+                  <Route index element={<AdministrarPacientes />} />
+                  <Route path="citas" element={<CitasAdmin />} />
+                  <Route path="perfil" element={<EditarPerfil />} />
+                  <Route path="cambiar-password" element={<CambiarPassword />} />
+                </Route>
+                
+                <Route path="agendar-cita" element={<AgendarCitaPublic />} />
+                
+              </Routes>
+            </CitasProvider>
+          </PacientesProvider>
+        </ProfesionalesProvider>
       </AuthProvider>
     </BrowserRouter>
   )

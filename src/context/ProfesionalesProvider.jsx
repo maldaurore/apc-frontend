@@ -25,10 +25,15 @@ export const ProfesionalesProvider = ({ children }) => {
     obtenerProfesionales();
   }, []);
 
+  const obtenerProfesionalesPorMotivo = (motivo) => {
+    return profesionales.filter(profesional => profesional.servicios.includes(motivo));
+  }
+
   return (
     <ProfesionalesContext.Provider 
       value={{ 
-        profesionales
+        profesionales,
+        obtenerProfesionalesPorMotivo
       }}
     >
       {children}

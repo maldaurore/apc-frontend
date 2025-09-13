@@ -2,14 +2,16 @@ import MOTIVOS from "../../constants/motivos";
 import PROFESIONALES from "../../constants/profesionales";
 import Calendario from "../Calendario";
 import Alerta from "../Alerta";
-import useProfesionalesPorMotivo from "../../hooks/agendar-cita/useProfesionalesPorMotivo";
 import useCitasProfesional from "../../hooks/agendar-cita/useCitasProfesional";
+import useProfesionales from "../../hooks/useProfesionales";
 
 export default function PasoProfesionalHorario({
   motivoId, profesionalId, onChangeProfesional, slot, onSelectSlot,
   onBack, onNext, canNext, alerta
 }) {
-  const profesionales = useProfesionalesPorMotivo(motivoId);
+  const { obtenerProfesionalesPorMotivo } = useProfesionales();
+  const profesionales = obtenerProfesionalesPorMotivo(motivoId);
+  console.log(profesionales)
   const citas = useCitasProfesional(profesionalId);
   const msg = alerta?.msg;
 
@@ -28,7 +30,7 @@ export default function PasoProfesionalHorario({
           onChange={(e) => onChangeProfesional(e.target.value)}
         >
           <option value="">-- Selecciona profesional --</option>
-          {profesionales.map(p => <option key={p.id} value={p.id}>{p.nombre}</option>)}
+          {profesionales.map(p => <option key={p.id} value={p._id}>{p.nombre}</option>)}
         </select>
       </div>
 
